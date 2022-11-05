@@ -8,6 +8,7 @@ import net.minecraft.client.item.TooltipContext;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
+import net.minecraft.text.TranslatableText;
 import net.minecraft.world.World;
 import zabi.minecraft.extraalchemy.config.ModConfig;
 
@@ -21,10 +22,10 @@ public class EmptyRingItem extends Item {
 	@Override
 	public void appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext context) {
 		if (ModConfig.INSTANCE.enableVials) {
-			tooltip.add(Text.translatable("item.extraalchemy.empty_ring.tooltip1"));
-			tooltip.add(Text.translatable("item.extraalchemy.empty_ring.tooltip2"));
+			tooltip.add(new TranslatableText("item.extraalchemy.empty_ring.tooltip1"));
+			tooltip.add(new TranslatableText("item.extraalchemy.empty_ring.tooltip2"));
 		} else {
-			tooltip.add(Text.translatable("item.extraalchemy.empty_ring.tootlip.disabled"));
+			tooltip.add(new TranslatableText("item.extraalchemy.empty_ring.tootlip.disabled"));
 		}
 	}
 

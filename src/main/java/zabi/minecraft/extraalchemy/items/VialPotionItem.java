@@ -22,6 +22,7 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.stat.Stats;
 import net.minecraft.text.Text;
+import net.minecraft.text.TranslatableText;
 import net.minecraft.util.UseAction;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.registry.Registry;
@@ -81,7 +82,7 @@ public class VialPotionItem extends PotionItem {
 	
 	@Override
 	public Text getName(ItemStack stack) {
-		return Text.translatable(getTranslationKey(), Text.translatable(PotionUtil.getPotion(stack).finishTranslationKey("item.minecraft.potion.effect.")));
+		return new TranslatableText(getTranslationKey(), new TranslatableText(PotionUtil.getPotion(stack).finishTranslationKey("item.minecraft.potion.effect.")));
 	}
 
 	@Environment(EnvType.CLIENT)

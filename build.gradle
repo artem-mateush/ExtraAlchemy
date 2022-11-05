@@ -71,8 +71,6 @@ dependencies {
       exclude module: 'roughlyenoughitems-api'
     }
     
-/*
-    
 	modRuntimeOnly("me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}") {
 	  exclude module: 'fabric-api'
 	  exclude module: 'config-2'
@@ -80,7 +78,7 @@ dependencies {
       exclude module: 'roughlyenoughitems-api'
 	}
 	
-	*/
+
 	modImplementation("com.github.Virtuoel:Pehkui:${project.pehkui_version}") {
 	  exclude group: "net.fabricmc.fabric-api"
 	}
@@ -96,7 +94,6 @@ dependencies {
 	modImplementation("curse.maven:inventorio-491073:${project.inventorio_version}") {
 	  exclude group: "net.fabricmc.fabric-api"
 	}
-	
 
 	modRuntimeOnly("curse.maven:nomoreglowingpots-286348:${project.nmgp_version}") {
 	  exclude module: 'fabric-api'

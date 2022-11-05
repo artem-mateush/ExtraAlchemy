@@ -7,33 +7,35 @@ import com.terraformersmc.modmenu.api.ModMenuApi;
 
 import me.shedaniel.clothconfig2.api.ConfigBuilder;
 import me.shedaniel.clothconfig2.api.ConfigCategory;
+import net.minecraft.text.Style;
 import net.minecraft.text.Text;
+import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
 import zabi.minecraft.extraalchemy.config.ConfigInstance;
 import zabi.minecraft.extraalchemy.config.ModConfig;
 
 public class ConfigScreenProvider implements ModMenuApi {
 	
-	private static final Text MUST_SYNC = Text.translatable("extraalchemy.config.must_sync").formatted(Formatting.RED, Formatting.BOLD);
-	private static final Text CLIENT_SIDE = Text.translatable("extraalchemy.config.clientside").formatted(Formatting.AQUA, Formatting.BOLD);
-	private static final Text SERVER_SIDE = Text.translatable("extraalchemy.config.serveronly").formatted(Formatting.GOLD, Formatting.BOLD);
+	private static final Text MUST_SYNC = new TranslatableText("extraalchemy.config.must_sync").setStyle(Style.EMPTY.withColor(Formatting.RED).withBold(true));
+	private static final Text CLIENT_SIDE = new TranslatableText("extraalchemy.config.clientside").setStyle(Style.EMPTY.withColor(Formatting.AQUA).withBold(true));
+	private static final Text SERVER_SIDE = new TranslatableText("extraalchemy.config.serveronly").setStyle(Style.EMPTY.withColor(Formatting.GOLD).withBold(true));
 	
 	public static ConfigBuilder builder() {
 		
 		ConfigBuilder configBuilder = ConfigBuilder.create()
-				.setTitle(Text.translatable("extraalchemy.mod_name"))
+				.setTitle(new TranslatableText("extraalchemy.mod_name"))
 				.setEditable(true)
 				.setSavingRunnable(() -> ModConfig.writeJson());
 		
-		ConfigCategory general = configBuilder.getOrCreateCategory(Text.translatable("extraalchemy.config.general"));
-		ConfigCategory potions = configBuilder.getOrCreateCategory(Text.translatable("extraalchemy.config.potions"));
+		ConfigCategory general = configBuilder.getOrCreateCategory(new TranslatableText("extraalchemy.config.general"));
+		ConfigCategory potions = configBuilder.getOrCreateCategory(new TranslatableText("extraalchemy.config.potions"));
 		
 		general.addEntry(configBuilder.entryBuilder()
-				.startBooleanToggle(Text.translatable("extraalchemy.config.general.enable_learning_boost") , ModConfig.INSTANCE.learningIncreasesExpOrbValue)
+				.startBooleanToggle(new TranslatableText("extraalchemy.config.general.enable_learning_boost") , ModConfig.INSTANCE.learningIncreasesExpOrbValue)
 					.setDefaultValue(true)
 					.setTooltip(
-							Text.translatable("extraalchemy.config.general.enable_learning_boost.tooltip1"),
-							Text.translatable("extraalchemy.config.general.enable_learning_boost.tooltip2"), 
+							new TranslatableText("extraalchemy.config.general.enable_learning_boost.tooltip1"),
+							new TranslatableText("extraalchemy.config.general.enable_learning_boost.tooltip2"), 
 							SERVER_SIDE
 					)
 					.setSaveConsumer(val -> {ModConfig.INSTANCE.learningIncreasesExpOrbValue = val;})
@@ -41,11 +43,11 @@ public class ConfigScreenProvider implements ModMenuApi {
 		);
 		
 //		general.addEntry(configBuilder.entryBuilder()
-//				.startBooleanToggle(Text.translatable("extraalchemy.config.general.disable_inventory_shift") , ModConfig.INSTANCE.removeInventoryPotionShift)
+//				.startBooleanToggle(new TranslatableText("extraalchemy.config.general.disable_inventory_shift") , ModConfig.INSTANCE.removeInventoryPotionShift)
 //					.setDefaultValue(true)
 //					.setTooltip(
-//							Text.translatable("extraalchemy.config.general.disable_inventory_shift.tooltip1"), 
-//							Text.translatable("extraalchemy.config.general.disable_inventory_shift.tooltip2"),
+//							new TranslatableText("extraalchemy.config.general.disable_inventory_shift.tooltip1"), 
+//							new TranslatableText("extraalchemy.config.general.disable_inventory_shift.tooltip2"),
 //							CLIENT_SIDE
 //					)
 //					.setSaveConsumer(val -> {ModConfig.INSTANCE.removeInventoryPotionShift = val;})
@@ -53,11 +55,11 @@ public class ConfigScreenProvider implements ModMenuApi {
 //		);
 		
 		general.addEntry(configBuilder.entryBuilder()
-				.startBooleanToggle(Text.translatable("extraalchemy.config.general.show_icons_in_tooltips") , ModConfig.INSTANCE.showIconsInTooltips)
+				.startBooleanToggle(new TranslatableText("extraalchemy.config.general.show_icons_in_tooltips") , ModConfig.INSTANCE.showIconsInTooltips)
 					.setDefaultValue(true)
 					.setTooltip(
-							Text.translatable("extraalchemy.config.general.show_icons_in_tooltips.tooltip1"), 
-							Text.translatable("extraalchemy.config.general.show_icons_in_tooltips.tooltip2"),
+							new TranslatableText("extraalchemy.config.general.show_icons_in_tooltips.tooltip1"), 
+							new TranslatableText("extraalchemy.config.general.show_icons_in_tooltips.tooltip2"),
 							CLIENT_SIDE
 					)
 					.setSaveConsumer(val -> {ModConfig.INSTANCE.showIconsInTooltips = val;})
@@ -65,11 +67,11 @@ public class ConfigScreenProvider implements ModMenuApi {
 		);
 		
 		general.addEntry(configBuilder.entryBuilder()
-				.startBooleanToggle(Text.translatable("extraalchemy.config.general.enable_vials") , ModConfig.INSTANCE.enableVials)
+				.startBooleanToggle(new TranslatableText("extraalchemy.config.general.enable_vials") , ModConfig.INSTANCE.enableVials)
 					.setDefaultValue(true)
 					.setTooltip(
-							Text.translatable("extraalchemy.config.general.enable_vials.tooltip1"), 
-							Text.translatable("extraalchemy.config.general.enable_vials.tooltip2"),
+							new TranslatableText("extraalchemy.config.general.enable_vials.tooltip1"), 
+							new TranslatableText("extraalchemy.config.general.enable_vials.tooltip2"),
 							MUST_SYNC
 					)
 					.setSaveConsumer(val -> {ModConfig.INSTANCE.enableVials = val;})
@@ -77,11 +79,11 @@ public class ConfigScreenProvider implements ModMenuApi {
 		);
 		
 		general.addEntry(configBuilder.entryBuilder()
-				.startBooleanToggle(Text.translatable("extraalchemy.config.general.enable_rings") , ModConfig.INSTANCE.enableRings)
+				.startBooleanToggle(new TranslatableText("extraalchemy.config.general.enable_rings") , ModConfig.INSTANCE.enableRings)
 					.setDefaultValue(true)
 					.setTooltip(
-							Text.translatable("extraalchemy.config.general.enable_rings.tooltip1"), 
-							Text.translatable("extraalchemy.config.general.enable_rings.tooltip2"),
+							new TranslatableText("extraalchemy.config.general.enable_rings.tooltip1"), 
+							new TranslatableText("extraalchemy.config.general.enable_rings.tooltip2"),
 							MUST_SYNC
 					)
 					.setSaveConsumer(val -> {ModConfig.INSTANCE.enableRings = val;})
@@ -89,11 +91,11 @@ public class ConfigScreenProvider implements ModMenuApi {
 		);
 		
 		general.addEntry(configBuilder.entryBuilder()
-				.startBooleanToggle(Text.translatable("extraalchemy.config.general.ignore_ring_mods") , ModConfig.INSTANCE.allowRingsInInventoryWithThirdPartyMods)
+				.startBooleanToggle(new TranslatableText("extraalchemy.config.general.ignore_ring_mods") , ModConfig.INSTANCE.allowRingsInInventoryWithThirdPartyMods)
 					.setDefaultValue(false)
 					.setTooltip(
-							Text.translatable("extraalchemy.config.general.ignore_ring_mods.tooltip1"), 
-							Text.translatable("extraalchemy.config.general.ignore_ring_mods.tooltip2"),
+							new TranslatableText("extraalchemy.config.general.ignore_ring_mods.tooltip1"), 
+							new TranslatableText("extraalchemy.config.general.ignore_ring_mods.tooltip2"),
 							SERVER_SIDE
 					)
 					.setSaveConsumer(val -> {ModConfig.INSTANCE.allowRingsInInventoryWithThirdPartyMods = val;})
@@ -101,11 +103,11 @@ public class ConfigScreenProvider implements ModMenuApi {
 		);
 		
 		general.addEntry(configBuilder.entryBuilder()
-				.startBooleanToggle(Text.translatable("extraalchemy.config.general.enable_brewing_stand_fire") , ModConfig.INSTANCE.enableBrewingStandFire)
+				.startBooleanToggle(new TranslatableText("extraalchemy.config.general.enable_brewing_stand_fire") , ModConfig.INSTANCE.enableBrewingStandFire)
 					.setDefaultValue(true)
 					.setTooltip(
-							Text.translatable("extraalchemy.config.general.enable_brewing_stand_fire.tooltip1"), 
-							Text.translatable("extraalchemy.config.general.enable_brewing_stand_fire.tooltip2"),
+							new TranslatableText("extraalchemy.config.general.enable_brewing_stand_fire.tooltip1"), 
+							new TranslatableText("extraalchemy.config.general.enable_brewing_stand_fire.tooltip2"),
 							SERVER_SIDE
 					)
 					.setSaveConsumer(val -> {ModConfig.INSTANCE.enableBrewingStandFire = val;})
@@ -113,11 +115,11 @@ public class ConfigScreenProvider implements ModMenuApi {
 		);
 
 		general.addEntry(configBuilder.entryBuilder()
-				.startIntField(Text.translatable("extraalchemy.config.general.brewing_stand_heat_increment_delay") , ModConfig.INSTANCE.brewingStandHeatIncrementDelay)
+				.startIntField(new TranslatableText("extraalchemy.config.general.brewing_stand_heat_increment_delay") , ModConfig.INSTANCE.brewingStandHeatIncrementDelay)
 					.setDefaultValue(2)
 					.setTooltip(
-							Text.translatable("extraalchemy.config.general.brewing_stand_heat_increment_delay.tooltip1"), 
-							Text.translatable("extraalchemy.config.general.brewing_stand_heat_increment_delay.tooltip2"),
+							new TranslatableText("extraalchemy.config.general.brewing_stand_heat_increment_delay.tooltip1"), 
+							new TranslatableText("extraalchemy.config.general.brewing_stand_heat_increment_delay.tooltip2"),
 							SERVER_SIDE
 					)
 					.setSaveConsumer(val -> {ModConfig.INSTANCE.brewingStandHeatIncrementDelay = val;})
@@ -126,11 +128,11 @@ public class ConfigScreenProvider implements ModMenuApi {
 
 
 		general.addEntry(configBuilder.entryBuilder()
-				.startIntField(Text.translatable("extraalchemy.config.general.brewing_stand_fire_max_capacity") , ModConfig.INSTANCE.brewingStandFireMaxCapacity)
+				.startIntField(new TranslatableText("extraalchemy.config.general.brewing_stand_fire_max_capacity") , ModConfig.INSTANCE.brewingStandFireMaxCapacity)
 					.setDefaultValue(20)
 					.setTooltip(
-							Text.translatable("extraalchemy.config.general.brewing_stand_fire_max_capacity.tooltip1"), 
-							Text.translatable("extraalchemy.config.general.brewing_stand_fire_max_capacity.tooltip2"),
+							new TranslatableText("extraalchemy.config.general.brewing_stand_fire_max_capacity.tooltip1"), 
+							new TranslatableText("extraalchemy.config.general.brewing_stand_fire_max_capacity.tooltip2"),
 							SERVER_SIDE
 					)
 					.setSaveConsumer(val -> {ModConfig.INSTANCE.brewingStandFireMaxCapacity = val;})
@@ -138,11 +140,36 @@ public class ConfigScreenProvider implements ModMenuApi {
 		);
 
 		general.addEntry(configBuilder.entryBuilder()
-				.startBooleanToggle(Text.translatable("extraalchemy.config.general.anchor_depletes") , ModConfig.INSTANCE.useAnchorChargesWithReturnPotion)
+				.startIntField(new TranslatableText("extraalchemy.config.general.brewing_stand_heat_increment_delay") , ModConfig.INSTANCE.brewingStandHeatIncrementDelay)
+					.setDefaultValue(2)
+					.setTooltip(
+							new TranslatableText("extraalchemy.config.general.brewing_stand_heat_increment_delay.tooltip1"), 
+							new TranslatableText("extraalchemy.config.general.brewing_stand_heat_increment_delay.tooltip2"),
+							SERVER_SIDE
+					)
+					.setSaveConsumer(val -> {ModConfig.INSTANCE.brewingStandHeatIncrementDelay = val;})
+					.build()
+		);
+
+
+		general.addEntry(configBuilder.entryBuilder()
+				.startIntField(new TranslatableText("extraalchemy.config.general.brewing_stand_fire_max_capacity") , ModConfig.INSTANCE.brewingStandFireMaxCapacity)
+					.setDefaultValue(20)
+					.setTooltip(
+							new TranslatableText("extraalchemy.config.general.brewing_stand_fire_max_capacity.tooltip1"), 
+							new TranslatableText("extraalchemy.config.general.brewing_stand_fire_max_capacity.tooltip2"),
+							SERVER_SIDE
+					)
+					.setSaveConsumer(val -> {ModConfig.INSTANCE.brewingStandFireMaxCapacity = val;})
+					.build()
+		);
+
+		general.addEntry(configBuilder.entryBuilder()
+				.startBooleanToggle(new TranslatableText("extraalchemy.config.general.anchor_depletes") , ModConfig.INSTANCE.useAnchorChargesWithReturnPotion)
 					.setDefaultValue(true)
 					.setTooltip(
-							Text.translatable("extraalchemy.config.general.anchor_depletes.tooltip1"), 
-							Text.translatable("extraalchemy.config.general.anchor_depletes.tooltip2"),
+							new TranslatableText("extraalchemy.config.general.anchor_depletes.tooltip1"), 
+							new TranslatableText("extraalchemy.config.general.anchor_depletes.tooltip2"),
 							SERVER_SIDE
 					)
 					.setSaveConsumer(val -> {ModConfig.INSTANCE.useAnchorChargesWithReturnPotion = val;})
@@ -154,12 +181,12 @@ public class ConfigScreenProvider implements ModMenuApi {
 				String name = f.getName();
 				if (f.getType().isAssignableFrom(boolean.class)) {
 					potions.addEntry(configBuilder.entryBuilder()
-						.startBooleanToggle(Text.translatable("extraalchemy.config.potion", Text.translatable("item.minecraft.potion.effect."+name)) , f.getBoolean(ModConfig.INSTANCE.potions))
+						.startBooleanToggle(new TranslatableText("extraalchemy.config.potion", new TranslatableText("item.minecraft.potion.effect."+name)) , f.getBoolean(ModConfig.INSTANCE.potions))
 							.setDefaultValue(true)
 							.requireRestart()
 							.setTooltip(
-									Text.translatable("extraalchemy.config.potion.tooltip1", Text.translatable("item.minecraft.potion.effect."+name)), 
-									Text.translatable("extraalchemy.config.potion.tooltip2", Text.translatable("item.minecraft.potion.effect."+name)),
+									new TranslatableText("extraalchemy.config.potion.tooltip1", new TranslatableText("item.minecraft.potion.effect."+name)), 
+									new TranslatableText("extraalchemy.config.potion.tooltip2", new TranslatableText("item.minecraft.potion.effect."+name)),
 									MUST_SYNC
 							)
 							.setSaveConsumer(val -> {try {
